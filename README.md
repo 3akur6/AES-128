@@ -34,31 +34,67 @@ aes = AES_128.new(
 
 aes.add_round_key
 # the first add-round-key step before ten rounds, which returns state matrix
-# => Matrix[[1, 5, 9, 13], [0, 4, 8, 12], [3, 7, 11, 15], [2, 6, 10, 14]]
+# => Matrix
+#      1 5  9 13
+#      0 4  8 12
+#      3 7 11 15
+#      2 6 10 14
 
 aes.byte_sub
 # ByteSub step
-# => Matrix[[124, 107, 1, 215], [99, 242, 48, 254], [123, 197, 43, 118], [119, 111, 103, 171]]
+# => Matrix
+#      124 107   1 215
+#       99 242  48 254
+#      123 197  43 118
+#      119 111 103 171
 # or hex format
-# Matrix[["7C", "6B", "01", "D7"], ["63", "F2", "30", "FE"], ["7B", "C5", "2B", "76"], ["77", "6F", "67", "AB"]]
+# Matrix
+#   7C 6B 01 D7
+#   63 F2 30 FE
+#   7B C5 2B 76
+#   77 6F 67 AB
 
 aes.shift_row
 # ShiftRow step
-# => Matrix[[124, 107, 1, 215], [242, 48, 254, 99], [43, 118, 123, 197], [171, 119, 111, 103]]
+# => Matrix
+#      124 107   1 215
+#      242  48 254  99
+#       43 118 123 197
+#      171 119 111 103
 # or hex format
-# Matrix[["7C", "6B", "01", "D7"], ["F2", "30", "FE", "63"], ["2B", "76", "7B", "C5"], ["AB", "77", "6F", "67"]]
+# Matrix
+#   7C 6B 01 D7
+#   F2 30 FE 63
+#   2B 76 7B C5
+#   AB 77 6F 67
 
 aes.mix_column
 # MixColumn step
-# => Matrix[[117, 135, 15, 178], [85, 230, 4, 34], [62, 46, 184, 140], [16, 21, 88, 10]]
+# => Matrix
+#      117 135  15 178
+#       85 230   4  34
+#       62  46 184 140
+#       16  21  88  10
 # or hex format
-# Matrix[["75", "87", "0F", "B2"], ["55", "E6", "04", "22"], ["3E", "2E", "B8", "8C"], ["10", "15", "58", "0A"]]
+# Matrix
+#   75 87 0F B2
+#   55 E6 04 22
+#   3E 2E B8 8C
+#   10 15 58 0A
 
 aes.add_round_key
 # AddRoundKey step in each round
-# => Matrix[[116, 134, 14, 179], [84, 231, 5, 35], [63, 47, 185, 141], [17, 20, 89, 11]]
+# => Matrix
+#      116 134  14 179
+#       84 231   5  35
+#       63  47 185 141
+#       17  20  89  11
 # or hex format
-# Matrix[["74", "86", "0E", "B3"], ["54", "E7", "05", "23"], ["3F", "2F", "B9", "8D"], ["11", "14", "59", "0B"]]
+# Matrix
+#   74 86 0E B3
+#   54 E7 05 23
+#   3F 2F B9 8D
+#   11 14 59 0B
 ```
 
 also you can get the result after each round quickly
@@ -73,13 +109,25 @@ aes = AES_128.new(
 aes.add_round_key
 # the first add-round-key step before ten rounds, which returns state matrix
 # The step is necessary because it won't be called in 'round' function automatically
-# => Matrix[[1, 5, 9, 13], [0, 4, 8, 12], [3, 7, 11, 15], [2, 6, 10, 14]]
+# => Matrix
+#       1  5  9 13
+#       0  4  8 12
+#       3  7 11 15
+#       2  6 10 14
 
 aes.round
 # do ByteSub -> ShiftRow -> MixColumn -> AddRoundKey one time
-# => Matrix[[116, 134, 14, 179], [84, 231, 5, 35], [63, 47, 185, 141], [17, 20, 89, 11]]
+# => Matrix
+#      116 134  14 179
+#       84 231   5  35
+#       63  47 185 141
+#       17  20  89  11
 # or hex format
-# Matrix[["74", "86", "0E", "B3"], ["54", "E7", "05", "23"], ["3F", "2F", "B9", "8D"], ["11", "14", "59", "0B"]]
+# Matrix
+#   74 86 0E B3
+#   54 E7 05 23
+#   3F 2F B9 8D
+#   11 14 59 0B
 ```
 
 <span id = "byte_class_usage">Usage of Byte class</span>
