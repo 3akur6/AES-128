@@ -8,7 +8,7 @@ class Key
 
   def expansion(len)
     return @expanded_key if @expanded_key.length >= len
-    i = 4
+    i = @expanded_key.length / 4
     while @expanded_key.length < len
       tmp = @expanded_key[((i - 1) * 4)...(i * 4)]
       if (i % 4).zero?
