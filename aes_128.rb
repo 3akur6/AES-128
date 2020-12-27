@@ -52,11 +52,12 @@ class AES_128
         end
       end
     end
-    @state_matrix = Matrix.rows(cache.each_slice(4).to_a).map { |x| x.to_i }
+    @state_matrix = Matrix.rows(cache.each_slice(4).to_a).map(&:to_i)
   end
 
   def add_round_key
-    @state_matrix.map!.with_index { |x, idx| x ^ @k.expanded_key[idx] }
+    key = @k.expanded_key.each_slice(4).to_a.transpose.flatten
+    @state_matrix.map!.with_index { |x, idx| x ^ key[idx] }
   end
 
   def round
